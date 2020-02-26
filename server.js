@@ -51,6 +51,7 @@ io.on('connection', (soc)=>{
 
             Object.keys(players).forEach(sid=>{
                 players[sid].dead = false;
+                players[sid].ready = false;
             });
 
             //send Map to players
@@ -98,9 +99,6 @@ io.on('connection', (soc)=>{
             var winner=lastliveSid?players[lastliveSid]:false;
             soc.broadcast.emit('Game_End',winner)
             soc.emit('Game_End', winner);
-            Object.keys(players).forEach(sid=>{
-                players[sid].ready = false;
-            });
         }
     });
     soc.on('disconnect', ()=>{

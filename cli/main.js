@@ -4,6 +4,8 @@ var gameplay = false;
 var player = {x:0, y:0, d:0, col:""};
 var dirqueue = [];
 
+var godmode = false;
+
 var soc = io();
 
 function onload(){
@@ -40,7 +42,7 @@ function update(){
 }
 
 function updatePlayer(){
-    if(map[player.x][player.y]=="#666"){
+    if(godmode || map[player.x][player.y]=="#666"){
         map[player.x][player.y] = player.col;
         c.fillStyle = player.col;
         c.fillRect(player.x*pixelSizeX, player.y*pixelSizeY, pixelSizeX, pixelSizeY);
